@@ -1,6 +1,8 @@
 import EventsRepository from "../Repositories/EventsRepository";
 import Events from "../Model/Events";
 import Pagination from "../Base/Pagination"
+
+jest.useFakeTimers();
 it("test the event create feature valid", async () => {
    let events = new Events();
    events.eventName = "hom nay la mot ngay nang";
@@ -9,7 +11,11 @@ it("test the event create feature valid", async () => {
    events.startDate = new Date("10-11-2020");
    EventsRepository.create(events).then((bool) => {
       expect(bool).toBe(true);
-   });
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
+   ;
 
 });
 
@@ -21,7 +27,10 @@ it("test the event create feature invalid", async () => {
    events.startDate = new Date("10-11-2020");
    EventsRepository.create(events).then((bool) => {
       expect(bool).toBe(false);
-   });;
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
 });
 
 //Update all
@@ -34,7 +43,10 @@ it("test the event update feature", async () => {
    events.startDate = new Date("10-11-2020");
    EventsRepository.update(id, events).then((bool) => {
       expect(bool).toBe(true);
-   });;
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
 });
 
 //Update only field
@@ -45,7 +57,10 @@ it("test the event update feature", async () => {
    EventsRepository.update(id, events)
       .then((bool) => {
          expect(bool).toBe(true);
-      });
+      })
+      .catch((err)=>{
+         expect(err).toBe(false);
+      })
 
 });
 
@@ -58,7 +73,10 @@ it("test the event update feature", async () => {
     EventsRepository.update(id, events)   
    .then((bool) => {
       expect(bool).toBe(true);
-   });
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
    
 });
 
@@ -68,7 +86,10 @@ it("test the event delete feature id valid", async () => {
     EventsRepository.delete(id)
     .then((bool) => {
       expect(bool).toBe(true);
-   });
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
 });
 
 //Delete record
@@ -77,7 +98,10 @@ it("test the event delete feature invalid id", async () => {
    EventsRepository.delete(id)
    .then((bool) => {
       expect(bool).toBe(false);
-   });
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
 });
 
 //get records
@@ -87,7 +111,10 @@ it("get all events true", async () => {
    EventsRepository.getAll(pageNumber, pageSize)   
    .then((bool) => {
       expect(typeof bool).toBe(Array);
-   });;
+   })
+   .catch((err)=>{
+      expect(typeof err).toBe(Error);
+   })
 });
 
 //get records
@@ -97,7 +124,10 @@ it("get all events invalid", async () => {
    EventsRepository.getAll(pageNumber, pageSize)
    .then((bool) => {
       expect(bool).toBe(false);
-   });
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
 });
 
 

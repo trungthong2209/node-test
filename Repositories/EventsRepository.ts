@@ -84,7 +84,7 @@ export default class EventsRepository extends Repository<Events> {
             EventsManager.aggregate(pipeList).then((listEvent: Array<Events>) => {
                 resolve(listEvent);
             })
-            .catch((error)=>{
+            .catch((error: Error) => {
                 reject(error);
             })
         })

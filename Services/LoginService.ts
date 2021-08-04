@@ -5,6 +5,11 @@ import Constants from "../Base/Constants";
 export default class LoginService {
   public login(user: User): Promise<HttpStatus<String>> {
     let promise = new Promise<HttpStatus<String>>((resolve, reject) => {
+      if (user == null) {
+        let rejectStatus = new HttpStatus<String>(HttpStatus.UNAUTHORISED, null);
+        rejectStatus.message = Constants.LOGIN_AGAIN;
+        resolve(rejectStatus);
+      }
       if (user.password && user.email) {
         //Demo query 
         if (user.email == Constants.EMAIL && user.password == Constants.PWD) {
