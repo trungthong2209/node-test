@@ -7,7 +7,7 @@ export default class LoginService {
     let promise = new Promise<HttpStatus<String>>((resolve, reject) => {
       if (user.password && user.email) {
         //Demo query 
-        if (user.email === Constants.EMAIL && user.password === Constants.PWD) {
+        if (user.email == Constants.EMAIL && user.password == Constants.PWD) {
           const payload = {
             _id: "000000", email: user.email
           };
