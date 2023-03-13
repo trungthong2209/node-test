@@ -128,6 +128,24 @@ it("get all events invalid", async () => {
    .catch((err)=>{
       expect(err).toBe(false);
    })
+   
+});
+
+
+it("test the event create feature valid", async () => {
+   let events = new Events();
+   events.eventName = "hom nay la mot ngay nang";
+   events.description = "40 do C";
+   events.dueDate = new Date("10-10-2020");
+   events.startDate = new Date("10-11-2020");
+   EventsRepository.create(events).then((bool) => {
+      expect(bool).toBe(true);
+   })
+   .catch((err)=>{
+      expect(err).toBe(false);
+   })
+   ;
+
 });
 
 
